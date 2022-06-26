@@ -1,0 +1,99 @@
+ {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %} <!-- 4.d is here -->
+<!-- 1.c -->
+{% block content %}
+
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+<head>
+  
+
+<!-- 4.f all is to style the table of our list -->
+
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="{% static '/css/stylesheet.css' %}" rel="stylesheet">
+	<title>{{title}}</title>
+</head>
+<body>	
+<div class="myForm">
+    <form method='POST' action=''>{% csrf_token %}
+        <div class="row">
+            <div class='col-sm-6'>
+
+				<div class="form-row">
+                  <div class="form-group col-md-12">
+                    {{ form.adi|as_crispy_field }}
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    {{ form.miktar|as_crispy_field }}
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    {{ form.özgünlük|as_crispy_field }}
+                  </div>
+                </div>                
+
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    {{ form.Materialtype|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-2">
+                    {{ form.kati|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-2">
+                    {{ form.sivi|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-2">
+                    {{ form.deger|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    {{ form.tehlike|as_crispy_field }}
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    {{ form.acidli|as_crispy_field }}
+                  </div>
+                </div>    
+
+
+
+
+                
+
+
+                
+
+                <button type="submit" class="btn btn-primary">Save</button>
+
+                <!-- <input type="submit" value='Submit'/>   -->
+            </div>
+        </div>
+    </form>
+    
+</div><!-- End myform -->
+
+	<!-- <form method='POST' action=''>{% csrf_token %}
+		<div class="row">
+			<div class="col-sm-6">  4.g is the ufuqi table ra tain mekona 
+		{{form|crispy}}  4.e -->
+		<!--	</div>
+		</div>
+        <input type="submit" value='submit'/>
+    </form> -->
+
+</body>
+
+{% else %}
+<h1>Sorry! You Must Be Logged In To View This Page...</h1>
+
+<a href="{% url 'login' %}">Login Here</a>
+{% endif %}
+{% endblock %}
+
+</html>

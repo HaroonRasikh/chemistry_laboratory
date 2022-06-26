@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="{% static '/css/stylesheet.css' %}" rel="stylesheet">
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Deneyler Listesi</title>
+
+</head>
+
+<body>
+  <h1>{{title2}}</h1><br>
+  <form method='POST' action=''>{% csrf_token %}
+          {{form|crispy}}
+          <input type="submit" value='Ara'/>
+  </form>
+<br>
+
+   <table class='table'>
+        <thead>
+          <tr>
+            <th>COUNT</th>
+            <th>AD</th>
+            <th>MALZEME</th>
+            <th>KAYNAK</th>
+            <th>SIL</th>
+          </tr>
+        </thead>
+      {% for instance in queryset2 %}
+                <tr>
+                          <td>{{forloop.counter}}</td>
+                          <!-- <td>{{instance.adi}}</td> -->
+                          <td><a href="{% url 'update-deneyi' instance.id %}">{{instance.adi}}</a></td>
+                            <td>
+                                  {%for c in instance.malzeme.all %}
+                          				    {{c}} 
+                          				{% endfor %}
+                            </td>
+                            <td><a href="{{instance.description.url}}"download>{{instance.description}} </a></td>
+                            <td><a href="{% url 'delete_deneyi' instance.id %}">Sil</a></td>
+                    
+                  </tr>
+                
+      {% endfor %}
+  </table>
+
+</body>
+</html>
+{% endblock %}

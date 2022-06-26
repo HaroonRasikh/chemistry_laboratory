@@ -1,0 +1,29 @@
+body {
+	/*background-color: blue;*/
+}
+.myClass{
+	text-align: center;	
+	border-width: 1px;
+	border-style: solid;
+}
+
+.myForm{
+	margin: 30px;
+}
+/*Align the title to the center of the page*/
+.table{
+	font-size: 13px;
+	text-align: center;
+	width: 95%;
+	margin: auto;
+	text-align: center;
+}
+
+/*Make alternating colors for the table rows*/
+.table tr:nth-child(odd){
+	background: 009879;
+}
+
+.table tr:nth-child(even){
+	background: #dae5f4
+}

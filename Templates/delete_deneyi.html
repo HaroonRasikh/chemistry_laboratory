@@ -1,0 +1,50 @@
+ {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %} <!-- 4.d is here -->
+<!-- 1.c -->
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+
+<!-- 4.f all is to style the table of our list -->
+
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="{% static 'media/stylesheet.css' %}" rel="stylesheet">
+	<title>{{title}}</title>
+</head>
+<body>	
+
+{% if user.is_authenticated %}  
+<div class="myForm">
+
+ <form method="post" action="">
+   {% csrf_token %}
+     <h1>Are you sure you want to delete?</h1><br>
+     <input class="btn btn-danger" type="submit" value="Yes" />
+     <a href="/list_items"><div class="btn btn-primary">Cancel</div></a>
+ </form>
+ {% else %}
+<h1>Sorry! You Must Be Logged In To View This Page...</h1>
+<a href="{% url 'login' %}">Login Here</a>
+  
+</div><!-- End myform -->
+{% endif %}
+
+
+	<!-- <form method='POST' action=''>{% csrf_token %}
+		<div class="row">
+			<div class="col-sm-6">  4.g is the ufuqi table ra tain mekona 
+		{{form|crispy}}  4.e -->
+		<!--	</div>
+		</div>
+        <input type="submit" value='submit'/>
+    </form> -->
+
+
+</body>
+
+{% endblock %}
+</html>

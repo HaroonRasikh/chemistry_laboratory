@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!--<center>-->
+
+<!-- 	<h1> Malzeme listesi</h1>
+	<br/>
+	<table class="table table-bordered">
+
+		 {% for malzeme in malzeme_liste %}
+		 <tr>
+		 	<td>
+
+		 	<a href = "{% url 'show-malzeme' %}" >{{ malzeme }} </a></a><br/>
+		 	</td>
+		 	<td align="right">
+		 		<a href="{% url 'update-malzeme' malzeme.id %}" class = "btn btn-outline-success btn-sm"> Güncele </a>
+		 	</td>
+		</tr>
+		 {% endfor %}
+	</table> -->
+
+
+
+
+<!--</center>-->
+
+  <!-- <h1>Deneyi:</h1> -->
+<!--  <h1>{{ d }}</h1>
+  <br/>
+  {{ d.masaSayisi }} <br/>
+  {{ d.malzeme1  }} <br/>
+  {{ d.malzeme2 }} <br/>
+  {{ d.mazeme3 }} <br/>
+ 
+ -->
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="{% static '/css/stylesheet.css' %}" rel="stylesheet">
+</head>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Malezemeler Listesi</title>
+
+</head>
+
+<body>
+    <h1>{{title}}</h1><br>
+    <form method='POST' action=''>{% csrf_token %}
+    {{form|crispy}}
+        <input type="submit" value='Ara'/>
+</form>
+<br>
+
+   <table class='table'>
+        <thead>
+          <tr>
+            <th>COUNT</th>
+            <th>MALZEME AD</th>
+            <th>MIKTAR</th>
+            <th>TUR</th>
+            <th>KATI</th>
+            <th>SIVI</th>
+            <th>DEĞER</th>
+            <th>ÖZGÜNLÜK</th>
+            <th>TEHLİKE</th>
+            <th>ACID</th>
+            <th>SIL</th>
+          </tr>
+        </thead>
+      {% for instance in queryset %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <!-- <td>{{instance.adi}}</td> -->
+            <td><a href="{% url 'update-malzeme' instance.id %}">{{instance.adi}}</a></td>
+            <td>{{instance.miktar}}</td>
+            <td>{{instance.Materialtype}}</td>
+            <td>{{instance.kati}}</td>
+            <td>{{instance.sivi}}</td>
+            <td>{{instance.deger}}</td>
+            <td>{{instance.özgünlük}}</td>
+            <td>{{instance.tehlike}}</td>
+            <td>{{instance.acidli}}</td>
+            <td><a href="{% url 'delete_malzeme' instance.id %}">Sil</a></td>
+
+          </tr>
+      {% endfor %}
+    </table>
+
+</body>
+
+
+
+
+
+
+{%endblock %}

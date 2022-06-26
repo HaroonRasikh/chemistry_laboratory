@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+	<link href="{% static '/css/stylesheet.css' %}" rel="stylesheet">
+	<title>{{title}}</title>
+</head>
+<body>
+<div class="myForm">
+    <form method='POST' action='' enctype="multipart/form-data">{% csrf_token %}
+        <div class="row">
+            <div class='col-sm-12'>
+                
+                <div class="form-row">
+                      <div class="form-group col-md-12">
+                        {{ form.adi|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-12">
+                        {{ form.malzeme|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-12">
+                        {{ form.description|as_crispy_field }}
+                      </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+
+                <!-- <input type="submit" value='Submit'/>   -->
+            </div>
+        </div>
+    </form>
+</div><!-- End myform -->
+	
+</body>
+</html>
+
+<!--	 
+	 <h1>Database Deneyi ekle</h1>
+	 
+	 <br/><br/>
+	  {% if submitted %}
+	 	Deneyi eklemeniz başarı ile tamamlandi!
+	 {% else %} 
+		 <form action="" method=POST>
+				{% csrf_token %}
+				{{ form.as_p }}
+
+
+				<input type ="submit" value ="Submit" class = "btn btn-secondary">
+
+		 </form>
+	  {% endif %}
+	</center>
+
+
+	 <br/><br/>
+
+-->
+{% else %}
+
+<h1>Sorry! You Must Be Logged In To View This Page...</h1>
+<a href="{% url 'login' %}">Login Here</a>
+
+{% endif %}
+{%endblock %} 
+<!-- 1.c -->
